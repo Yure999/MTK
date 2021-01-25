@@ -1,0 +1,2 @@
+com/example/mejoratukmm/shared/BuildConfig.java
+ com.example.mejoratukmm.shared.BuildConfig
