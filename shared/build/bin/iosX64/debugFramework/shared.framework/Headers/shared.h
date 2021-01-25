@@ -6,6 +6,8 @@
 #import <Foundation/NSString.h>
 #import <Foundation/NSValue.h>
 
+@class SharedDice;
+
 NS_ASSUME_NONNULL_BEGIN
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunknown-warning-option"
@@ -148,6 +150,29 @@ __attribute__((swift_name("Platform")))
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
 + (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
 @property (readonly) NSString *platform __attribute__((swift_name("platform")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Dice")))
+@interface SharedDice : SharedBase
+- (instancetype)initWithDiceNumber:(int32_t)diceNumber __attribute__((swift_name("init(diceNumber:)"))) __attribute__((objc_designated_initializer));
+- (int32_t)component1 __attribute__((swift_name("component1()")));
+- (SharedDice *)doCopyDiceNumber:(int32_t)diceNumber __attribute__((swift_name("doCopy(diceNumber:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property int32_t diceNumber __attribute__((swift_name("diceNumber")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("DiceRoller")))
+@interface SharedDiceRoller : SharedBase
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
++ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
+- (int32_t)getDiceNumber __attribute__((swift_name("getDiceNumber()")));
+- (void)rollDice __attribute__((swift_name("rollDice()")));
+- (void)setDiceNumberDiceNumber:(int32_t)diceNumber __attribute__((swift_name("setDiceNumber(diceNumber:)")));
+@property SharedDice *dice __attribute__((swift_name("dice")));
 @end;
 
 #pragma clang diagnostic pop

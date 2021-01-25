@@ -1,13 +1,24 @@
 import SwiftUI
 import shared
 
-func greet() -> String {
-    return Greeting().greeting()
+var diceRoller: DiceRoller = DiceRoller()
+
+private func rollDice() {
+    diceRoller.rollDice()
+}
+
+private func setDiceText() -> String {
+    String(diceRoller.getDiceNumber())
 }
 
 struct ContentView: View {
+    @State var diceText: String = ""
     var body: some View {
-        Text(greet())
+        Text(diceText)
+        Button("Roll the dice") {
+            rollDice()
+            diceText = setDiceText()
+        }
     }
 }
 
